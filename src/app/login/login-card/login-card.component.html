@@ -1,0 +1,35 @@
+<mat-card class="example-card">
+<form [formGroup]='loginForm' novalidate (ngSubmit) = "onClickSubmit(loginForm.value)" id="Login">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <button mat-button color="primary" mat-raised-button (click)="openDialog()" ><b>Signup</b></button>
+    <mat-card-title>Login to Adhira</mat-card-title>
+    <mat-card-subtitle>Find your social mates!!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="example-container">
+    
+  <mat-form-field>
+    <input matInput placeholder="Enter your email" formControlName="email" name ="email" autocomplete="new-email" required>
+    <mat-error *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">Valid email required.</mat-error>
+  </mat-form-field><br />
+   <mat-form-field>
+    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName='password'name ="password" autocomplete="new-password" required>
+     <mat-error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+    Minimum 8 characters  valid password required.</mat-error>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  
+  </mat-form-field>
+   
+  </div>
+  </mat-card-content>
+  <mat-card-actions>
+     <button mat-fab color="accent" type="submit" [disabled] = "!loginForm.valid">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <button mat-fab color="warn" type="button" (click) = "resetForm($event)">Reset</button>
+    
+  </mat-card-actions>
+ </form>
+</mat-card>
+

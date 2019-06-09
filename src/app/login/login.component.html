@@ -1,0 +1,24 @@
+
+<mat-grid-list cols="2" rowHeight="2:1.5">
+  <mat-grid-tile>
+<app-login-card></app-login-card>
+</mat-grid-tile>
+  <mat-grid-tile><mat-list role="list">
+  <mat-list-item role="listitem"><i class="material-icons">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
+  <mat-list-item role="listitem"><i class="material-icons">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
+  <mat-list-item role="listitem"><i class="material-icons">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
+</mat-list></mat-grid-tile>
+ 
+</mat-grid-list>
+<div>
+  <ol>
+    
+    <li>
+      <button mat-raised-button (click)="openDialog()">Pick one</button>
+    </li>
+    <br />
+    <li *ngIf="animal">
+      You chose: <p style="font-weight: bold">{{animal}}</p>
+    </li>
+  </ol>
+</div>
