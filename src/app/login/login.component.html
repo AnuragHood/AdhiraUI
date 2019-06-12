@@ -1,24 +1,80 @@
+<mat-grid-list cols="2">
+  <mat-grid-tile class="tile-1">
 
-<mat-grid-list cols="2" rowHeight="2:1.5">
-  <mat-grid-tile>
-<app-login-card></app-login-card>
-</mat-grid-tile>
-  <mat-grid-tile><mat-list role="list">
-  <mat-list-item role="listitem"><i class="material-icons">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
-  <mat-list-item role="listitem"><i class="material-icons">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
-  <mat-list-item role="listitem"><i class="material-icons">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
-</mat-list></mat-grid-tile>
- 
+    <my-slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
+      <div leftPane>
+        <form [formGroup]='loginForm' novalidate (ngSubmit)="onClickSubmit(loginForm.value)" id="Login">
+          <mat-list>
+            <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Login to Adhira...</span></mat-list-item>
+            <mat-list-item><span class="header2"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Find your social mates!!</span></mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list><br />
+          <mat-form-field>
+            <input matInput  formControlName="email" name="email" autocomplete="off" required>
+            <mat-placeholder class="placeholder">Enter your email</mat-placeholder>
+            <mat-error *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">Valid email required.</mat-error>
+          </mat-form-field><br />
+          <mat-form-field>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName='password' name="password" autocomplete="off" required>
+            <mat-placeholder class="placeholder">Enter your password</mat-placeholder>
+            <mat-error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+              Minimum 8 characters  valid password required.
+            </mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+          </mat-form-field>
+          <br /><br /><br />
+          <button mat-fab color="accent" type="submit" [disabled]="!loginForm.valid">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
+
+        </form>
+      </div>
+      <div rightPane>
+        <form [formGroup]='signupForm' novalidate (ngSubmit)="onClickSubmitSignup(signupForm.value)" id="signupForm">
+          <mat-list>
+            <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Signup</span></mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list><br />
+          <mat-form-field>
+            <input matInput  formControlName="name" name="name" autocomplete="off" required>
+           <mat-placeholder class="placeholder">Enter your name</mat-placeholder>
+            <mat-error *ngIf="signupForm.get('name').hasError('required') && signupForm.get('name').touched">Valid name is required.</mat-error>
+          </mat-form-field><br />
+          <mat-form-field>
+            <input matInput  formControlName="email" name="email" autocomplete="off" required>
+            <mat-placeholder class="placeholder">Enter your email</mat-placeholder>
+            <mat-error *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').touched">Valid email required.</mat-error>
+          </mat-form-field><br />
+          <mat-form-field>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName='password' name="password" autocomplete="off" required>
+            <mat-placeholder class="placeholder">Enter your password</mat-placeholder>
+            <mat-error *ngIf="signupForm.get('password').hasError('required') && signupForm.get('password').touched">
+              Minimum 8 characters  valid password required.
+            </mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+          </mat-form-field>
+          <br /><br /><br />
+          <button mat-fab color="accent" type="submit" [disabled]="!signupForm.valid">Signup</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
+
+        </form>
+      </div>
+    </my-slide-panel>
+  </mat-grid-tile >
+  <mat-grid-tile class="tile-2">
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+       
+        <div class="header1"><button mat-fab color="primary" (click)="changeButtonText($event)" type="button" id="signup">Signup</button></div>
+      </mat-list-item><br /><br />
+          <mat-list-item role="listitem"  class="listColor"><i class="material-icons accent">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
+          <mat-list-item role="listitem"  class="listColor"><i class="material-icons primary">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
+          <mat-list-item role="listitem"  class="listColor"><i class="material-icons lightgreen">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
+</mat-list>
+  </mat-grid-tile>
 </mat-grid-list>
-<div>
-  <ol>
-    
-    <li>
-      <button mat-raised-button (click)="openDialog()">Pick one</button>
-    </li>
-    <br />
-    <li *ngIf="animal">
-      You chose: <p style="font-weight: bold">{{animal}}</p>
-    </li>
-  </ol>
-</div>

@@ -1,14 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-$color:#dddd;
-body{
-background-color:$color
-}
-html, 
+$color:#8da0dd;
+$warn:#f44336;
+$accent: rgb(255, 64, 129);
+$primary:rgb(63, 81, 181);
+$basic: rgba(0, 0, 0, 0.87);
+$disabled: rgba(0, 0, 0, 0.26);
+html,
 body {
-  height: 100%;
-  margin: 0;
+  height: 100% !important;
+  margin: 0 !important;
+  font-size: 0.75em !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  font-family: cursive !important;
+  font-variant: normal !important;
+  background: no-repeat center center fixed !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100vh !important;
+  background: $color !important;
+  overflow: hidden;
+  text-shadow: 0.09em 0.09em 0.1em black !important;
 }
 .content {
   min-height: calc(100vh - 70px);
 }
+.warn{
+  color:$warn
+}
+.primary{
+  color:$primary
+}
+.accent{
+  color:$accent
+}
+.basic{
+  color:$basic
+}
+.disabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+.lightgreen{
+  color:lightgreen
+}
+.header1 {
+  color: rgb(255, 64, 129);
+  font-size: 22px !important;
+  font-weight: bold;
+}
+
+.header2 {
+  color: cornflowerblue;
+  font-size: 12px !important;
+  font-weight: normal;
+}
+
+.listColor {
+  color: white !important;
+}
+button {
+  font-size: 14px;
+  margin-top: 16px;
+}
+
