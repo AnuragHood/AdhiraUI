@@ -33,20 +33,14 @@ my-slide-panel {
 }
 
 [leftPane] {
-  background-color: #ddd;
+  background-color: white;
 }
 
 [rightPane] {
-  background-color: #ddd;
+  background-color: white;
 }
 img {
   border-radius: 50%;
-}
-.placeholder {
-  font: 17px sans-serif !important;
-  opacity: 1;
-  text-shadow: unset !important;
-  text-shadow: 0.0em 0.0em 0.1em white !important;
 }
 input {
   font: 15px sans-serif !important;
