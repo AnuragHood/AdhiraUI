@@ -3,7 +3,7 @@
 
     <my-slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
       <div leftPane>
-        <form [formGroup]='loginForm' novalidate (ngSubmit)="onClickSubmit(loginForm.value)" id="Login">
+        <form [formGroup]='loginForm' novalidate (ngSubmit)="onClickSubmitLogin(loginForm.value)" id="Login">
           <mat-list>
             <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Login to Adhira...</span></mat-list-item>
             <mat-list-item><span class="header2"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Find your social mates!!</span></mat-list-item>
@@ -37,13 +37,20 @@
             <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Signup</span></mat-list-item>
             <mat-divider></mat-divider>
           </mat-list><br />
+                     
           <mat-form-field>
-            <input matInput  formControlName="name" name="name" autocomplete="off" required>
-           <mat-placeholder class="placeholder">Enter your name</mat-placeholder>
+            <input matInput formControlName="name" name="name" autocomplete="off" required>
+            <mat-placeholder class="placeholder">Enter First Name</mat-placeholder>
             <mat-error *ngIf="signupForm.get('name').hasError('required') && signupForm.get('name').touched">Valid name is required.</mat-error>
-          </mat-form-field><br />
+          </mat-form-field>
           <mat-form-field>
-            <input matInput  formControlName="email" name="email" autocomplete="off" required>
+            <input matInput formControlName="last_name" name="last_name" autocomplete="off" required>
+            <mat-placeholder class="placeholder">Enter Last Name</mat-placeholder>
+            <mat-error *ngIf="signupForm.get('last_name').hasError('required') && signupForm.get('last_name').touched">Valid name is required.</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <input matInput formControlName="email" name="email" autocomplete="off" required>
             <mat-placeholder class="placeholder">Enter your email</mat-placeholder>
             <mat-error *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').touched">Valid email required.</mat-error>
           </mat-form-field><br />
@@ -53,11 +60,12 @@
             <mat-error *ngIf="signupForm.get('password').hasError('required') && signupForm.get('password').touched">
               Minimum 8 characters  valid password required.
             </mat-error>
+
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-
           </mat-form-field>
+
           <br /><br /><br />
           <button mat-fab color="accent" type="submit" [disabled]="!signupForm.valid">Signup</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
