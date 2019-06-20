@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatListModule } from '@angular/material/list';
+//import { MatCardModule } from '@angular/material/card';
+//import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormControl, Validators, FormGroup, } from '@angular/forms';
+//import { MatIconModule } from '@angular/material/icon';
+//import { MatGridListModule } from '@angular/material/grid-list';
+//import { MatListModule } from '@angular/material/list';
 import { RegisterService } from '../register.service';
+
 
 
 
@@ -21,8 +22,15 @@ export class LoginComponent implements OnInit {
   signupForm;
   isLeftVisible: boolean = true;
   response: any;
-
+  hide = true;
+  labelPosition = 'after';
+  login: Object = {};
+  user: Object = {};
+  gender = 'male';
+  
+  
   ngOnInit() {
+    
     this.loginForm = new FormGroup({
 
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
@@ -34,10 +42,20 @@ export class LoginComponent implements OnInit {
       last_name: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-
+      phone: new FormControl(null, [Validators.pattern('[6-9]\\d{9}')]),
+      confPassword: new FormControl(null, [Validators.required, Validators.email]),
+     
     });
     
+    
   }
+  //confirmPassword(formcontrol: FormControl) {
+  //  if (formcontrol.get("confPassword").value != null) {
+  //  return formcontrol.get("confPassword").value === formcontrol.get("password").value ? null : {
+  //    NotEqual: true
+  //  };
+  //}
+  //}
   changeButtonText() {
     
     this.isLeftVisible = !this.isLeftVisible
@@ -50,22 +68,23 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  hide = true;
-  login: Object ={ };
+ 
+  
   onClickSubmitLogin(formdata) {
-    //alert(formdata.password)
-    //alert(formdata.email)
     this.login["email"] = formdata.email;
     this.login["password"] = formdata.password;
     this.register.login(this.login).subscribe((data) => this.displaydata(data));
   }
   constructor(private register: RegisterService) { }
-  user: Object = {};
+  
   onClickSubmitSignup(formdata) {
+    console.log(formdata.gender)
     this.user["email"] = formdata.email;
     this.user["password"] = formdata.password;
     this.user["lastName"] = formdata.last_name;
     this.user["name"] = formdata.name;
+    this.user["phone"] = formdata.phone;
+    this.user["gender"] = formdata.gender;
     this.register.addUser(this.user).subscribe((data) => this.displaydata(data));
     
 

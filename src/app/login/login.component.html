@@ -1,4 +1,4 @@
-<mat-grid-list cols="2">
+<mat-grid-list cols="2" rowHeight="2:2">
   <mat-grid-tile class="tile-1">
 
     <my-slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
@@ -10,7 +10,7 @@
             <mat-divider></mat-divider>
           </mat-list><br />
           <mat-form-field>
-            <input matInput  formControlName="email" name="email" autocomplete="off" required>
+            <input matInput formControlName="email" name="email" autocomplete="off" required>
             <mat-placeholder class="placeholder">Enter your email</mat-placeholder>
             <mat-error *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">Valid email required.</mat-error>
           </mat-form-field><br />
@@ -37,12 +37,13 @@
             <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Signup</span></mat-list-item>
             <mat-divider></mat-divider>
           </mat-list><br />
-                     
+
           <mat-form-field>
             <input matInput formControlName="name" name="name" autocomplete="off" required>
             <mat-placeholder class="placeholder">Enter First Name</mat-placeholder>
             <mat-error *ngIf="signupForm.get('name').hasError('required') && signupForm.get('name').touched">Valid name is required.</mat-error>
           </mat-form-field>
+          &nbsp;
           <mat-form-field>
             <input matInput formControlName="last_name" name="last_name" autocomplete="off" required>
             <mat-placeholder class="placeholder">Enter Last Name</mat-placeholder>
@@ -53,7 +54,7 @@
             <input matInput formControlName="email" name="email" autocomplete="off" required>
             <mat-placeholder class="placeholder">Enter your email</mat-placeholder>
             <mat-error *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').touched">Valid email required.</mat-error>
-          </mat-form-field><br />
+          </mat-form-field>&nbsp;
           <mat-form-field>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName='password' name="password" autocomplete="off" required>
             <mat-placeholder class="placeholder">Enter your password</mat-placeholder>
@@ -66,23 +67,52 @@
             </button>
           </mat-form-field>
 
-          <br /><br /><br />
-          <button mat-fab color="accent" type="submit" [disabled]="!signupForm.valid">Signup</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
+          <br />
+          <mat-form-field>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName='confPassword' name="confPassword" autocomplete="off" required>
+            <mat-placeholder class="placeholder">Confirm password</mat-placeholder>
+            <mat-error *ngIf="signupForm.get('confPassword').hasError('pattern') && signupForm.get('confPassword').touched">
+              Passwords don't match.
+            </mat-error>
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field>
+            <input matInput type="number" formControlName='phone' name="phone" autocomplete="off">
+            <mat-placeholder class="placeholder">Phone</mat-placeholder>
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="signupForm.get('phone').touched">
+              Invalid phone number.
+            </mat-error>
+          </mat-form-field>
+          <br /><br />
+          <div>
+            <label>You are: &nbsp;&nbsp;&nbsp;</label>
+            <mat-radio-group [(ngModel)]="gender" name="gender" [ngModelOptions]="{standalone: true}">
+              <mat-radio-button value="male" checked>Male&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+              <mat-radio-button value="female">Female&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+              <mat-radio-button value="other">Other</mat-radio-button>
 
+            </mat-radio-group>
+          </div>
+          <br /><br /><br />
+          <div>
+            <button mat-fab color="accent" type="submit" [disabled]="!signupForm.valid">Signup</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
+          </div>
         </form>
       </div>
     </my-slide-panel>
-  </mat-grid-tile >
+  </mat-grid-tile>
   <mat-grid-tile class="tile-2">
     <mat-list role="list">
       <mat-list-item role="listitem">
-       
+
         <div class="header1"><button mat-fab color="primary" (click)="changeButtonText($event)" type="button" id="signup">Signup</button></div>
       </mat-list-item><br /><br />
-          <mat-list-item role="listitem"  class="listColor"><i class="material-icons accent">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
-          <mat-list-item role="listitem"  class="listColor"><i class="material-icons primary">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
-          <mat-list-item role="listitem"  class="listColor"><i class="material-icons lightgreen">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
-</mat-list>
+      <mat-list-item role="listitem" class="listColor"><i class="material-icons accent">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
+      <mat-list-item role="listitem" class="listColor"><i class="material-icons primary">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
+      <mat-list-item role="listitem" class="listColor"><i class="material-icons lightgreen">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
+    </mat-list>
   </mat-grid-tile>
+ 
 </mat-grid-list>

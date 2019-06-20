@@ -7,13 +7,14 @@ import { LoginComponent } from './login/login.component';
 import { MatButtonModule, MatMenuModule,MatSidenavModule } from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule, MatInputModule} from '@angular/material/';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import { FooterComponent } from './footer/footer.component';
 import { SlidePanelComponent } from './slide-panel';
 import { HttpClientModule } from '@angular/common/http';
+import { MatRadioModule  } from '@angular/material/';
 
 
 
@@ -41,9 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatGridListModule,
     MatListModule,
     HttpClientModule,
-    
-    
- 
+    MatRadioModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
