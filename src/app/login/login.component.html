@@ -1,5 +1,5 @@
-<mat-grid-list cols="2" rowHeight="2:2">
-  <mat-grid-tile class="tile-1">
+<div class="split left">
+  <div class="centered">
 
     <my-slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
       <div leftPane>
@@ -86,15 +86,15 @@
           </mat-form-field>
           <br /><br />
           <div>
-            <label>You are: &nbsp;&nbsp;&nbsp;</label>
+            <label>You are: &nbsp;</label>
             <mat-radio-group [(ngModel)]="gender" name="gender" [ngModelOptions]="{standalone: true}">
-              <mat-radio-button value="male" checked>Male&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
-              <mat-radio-button value="female">Female&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+              <mat-radio-button value="male" checked>Male&nbsp;</mat-radio-button>
+              <mat-radio-button value="female">Female&nbsp;</mat-radio-button>
               <mat-radio-button value="other">Other</mat-radio-button>
 
             </mat-radio-group>
           </div>
-          <br /><br /><br />
+          <br /><br />
           <div>
             <button mat-fab color="accent" type="submit" [disabled]="!signupForm.valid">Signup</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
@@ -102,8 +102,9 @@
         </form>
       </div>
     </my-slide-panel>
-  </mat-grid-tile>
-  <mat-grid-tile class="tile-2">
+   </div></div>
+<div class="split right">
+  <div class="centered">
     <mat-list role="list">
       <mat-list-item role="listitem">
 
@@ -113,6 +114,4 @@
       <mat-list-item role="listitem" class="listColor"><i class="material-icons primary">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
       <mat-list-item role="listitem" class="listColor"><i class="material-icons lightgreen">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
     </mat-list>
-  </mat-grid-tile>
- 
-</mat-grid-list>
+   </div></div>
