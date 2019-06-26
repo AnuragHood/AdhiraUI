@@ -1,5 +1,5 @@
-<div class="split left">
-  <div class="centered">
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="10%" >
+  <div fxFlex="50%">
 
     <my-slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
       <div leftPane>
@@ -32,7 +32,7 @@
         </form>
       </div>
       <div rightPane>
-        <form [formGroup]='signupForm' novalidate (ngSubmit)="onClickSubmitSignup(signupForm.value)" id="signupForm">
+        <form [formGroup]='signupForm' novalidate (ngSubmit)="openDialog()" id="signupForm">
           <mat-list>
             <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Signup</span></mat-list-item>
             <mat-divider></mat-divider>
@@ -102,16 +102,15 @@
         </form>
       </div>
     </my-slide-panel>
-   </div></div>
-<div class="split right">
-  <div class="centered">
-    <mat-list role="list">
-      <mat-list-item role="listitem">
+  </div>
+<div fxFlex="50%" class="matItems">
+  <mat-list role="list">
+    <mat-list-item role="listitem">
 
-        <div class="header1"><button mat-fab color="primary" (click)="changeButtonText($event)" type="button" id="signup">Signup</button></div>
-      </mat-list-item><br /><br />
-      <mat-list-item role="listitem" class="listColor"><i class="material-icons accent">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
-      <mat-list-item role="listitem" class="listColor"><i class="material-icons primary">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
-      <mat-list-item role="listitem" class="listColor"><i class="material-icons lightgreen">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
-    </mat-list>
-   </div></div>
+      <div class="header1"><button mat-fab color="primary" (click)="changeButtonText($event)" type="button" id="signup">Signup</button></div>
+    </mat-list-item><br /><br />
+    <mat-list-item role="listitem" class="listColor"><i class="material-icons accent">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
+    <mat-list-item role="listitem" class="listColor"><i class="material-icons primary">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
+    <mat-list-item role="listitem" class="listColor"><i class="material-icons lightgreen">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
+  </mat-list>
+</div></div>

@@ -15,6 +15,10 @@ import { FooterComponent } from './footer/footer.component';
 import { SlidePanelComponent } from './slide-panel';
 import { HttpClientModule } from '@angular/common/http';
 import { MatRadioModule  } from '@angular/material/';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
 
 
 
@@ -44,6 +48,8 @@ import { MatRadioModule  } from '@angular/material/';
     HttpClientModule,
     MatRadioModule,
     FormsModule,
+    FlexLayoutModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
