@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-//import { MatCardModule } from '@angular/material/card';
-//import { MatFormFieldModule } from '@angular/material/form-field';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup, } from '@angular/forms';
-//import { MatIconModule } from '@angular/material/icon';
-//import { MatGridListModule } from '@angular/material/grid-list';
-//import { MatListModule } from '@angular/material/list';
+import { DialogControlComponent } from '../dialog-control/dialog-control.component';
 import { RegisterService } from '../register.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 
@@ -27,7 +24,8 @@ export class LoginComponent implements OnInit {
   login: Object = {};
   user: Object = {};
   gender = 'male';
-  
+  animal: string;
+  name: string;
   
   ngOnInit() {
     
@@ -75,7 +73,7 @@ export class LoginComponent implements OnInit {
     this.login["password"] = formdata.password;
     this.register.login(this.login).subscribe((data) => this.displaydata(data));
   }
-  constructor(private register: RegisterService) { }
+  constructor(private register: RegisterService, public dialog: MatDialog) { }
   
   onClickSubmitSignup(formdata) {
     console.log(formdata.gender)
@@ -100,6 +98,17 @@ export class LoginComponent implements OnInit {
     (<HTMLFormElement>document.getElementById("signupForm")).reset();
   }
   
-  
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogControlComponent, {
+      width: '250px',
+      data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
+ 
   
 }

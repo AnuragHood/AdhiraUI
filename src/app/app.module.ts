@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatRadioModule  } from '@angular/material/';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DialogControlComponent } from './dialog-control/dialog-control.component';
 
 
 
@@ -28,9 +29,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     LoginComponent,
     FooterComponent,
     SlidePanelComponent,
+    DialogControlComponent,
+   
     
    
   ],
+  entryComponents: [DialogControlComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

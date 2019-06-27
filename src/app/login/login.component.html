@@ -1,4 +1,5 @@
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="10%" >
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="10%">
+  
   <div fxFlex="50%">
 
     <my-slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
@@ -103,14 +104,16 @@
       </div>
     </my-slide-panel>
   </div>
-<div fxFlex="50%" class="matItems">
-  <mat-list role="list">
-    <mat-list-item role="listitem">
+  <div fxFlex="50%" class="matItems">
+   
+    <mat-list role="list">
+      <mat-list-item role="listitem">
 
-      <div class="header1"><button mat-fab color="primary" (click)="changeButtonText($event)" type="button" id="signup">Signup</button></div>
-    </mat-list-item><br /><br />
-    <mat-list-item role="listitem" class="listColor"><i class="material-icons accent">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
-    <mat-list-item role="listitem" class="listColor"><i class="material-icons primary">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
-    <mat-list-item role="listitem" class="listColor"><i class="material-icons lightgreen">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
-  </mat-list>
-</div></div>
+        <div class="header1"><button mat-fab color="primary" (click)="changeButtonText($event)" type="button" id="signup">Signup</button></div>
+      </mat-list-item><br /><br />
+      <mat-list-item role="listitem" class="listColor"><i class="material-icons accent">favorite</i>&nbsp;&nbsp;Follow your interests.</mat-list-item>
+      <mat-list-item role="listitem" class="listColor"><i class="material-icons primary">hearing</i>&nbsp;&nbsp;Hear what people are talking about.</mat-list-item>
+      <mat-list-item role="listitem" class="listColor"><i class="material-icons lightgreen">chat</i>&nbsp;&nbsp;Join the conversation.</mat-list-item>
+    </mat-list>
+  </div>
+</div>
