@@ -1,15 +1,19 @@
-<h1 mat-dialog-title>Please Confirm! {{data.name}}</h1>
-<div mat-dialog-content>
-  <div class="content-dialogue">
+
+<div mat-dialog-content align="center">
+ 
+ <div class="content-dialogue">
     <label>Use for registration: &nbsp;</label><br /><br />
     <mat-radio-group [(ngModel)]="registerOption" name="registerOption" [ngModelOptions]="{standalone: true}">
-     
+
       <mat-radio-button value="mobile">Mobile&nbsp;</mat-radio-button>
       <mat-radio-button value="email">Email</mat-radio-button>
 
     </mat-radio-group>
   </div>
+ 
 </div>
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  
+
+<div mat-dialog-actions  align="center">
+  <button mat-mini-fab color="basic" [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
 </div>

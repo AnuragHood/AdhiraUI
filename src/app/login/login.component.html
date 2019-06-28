@@ -72,16 +72,16 @@
           <mat-form-field>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName='confPassword' name="confPassword" autocomplete="off" required>
             <mat-placeholder class="placeholder">Confirm password</mat-placeholder>
-            <mat-error *ngIf="signupForm.get('confPassword').hasError('pattern') && signupForm.get('confPassword').touched">
+            <mat-error *ngIf="signupForm.get('confPassword').hasError('pattern') && signupForm.get('confPassword').touched ">
               Passwords don't match.
             </mat-error>
           </mat-form-field>
           &nbsp;
           <mat-form-field>
-            <input matInput type="number" formControlName='phone' name="phone" autocomplete="off">
+            <input matInput type="number" formControlName='phone' name="phone" autocomplete="off" required>
             <mat-placeholder class="placeholder">Phone</mat-placeholder>
             <mat-icon matSuffix>phone</mat-icon>
-            <mat-error *ngIf="signupForm.get('phone').touched">
+            <mat-error *ngIf="signupForm.get('phone').touched && signupForm.get('phone').hasError('required')">
               Invalid phone number.
             </mat-error>
           </mat-form-field>

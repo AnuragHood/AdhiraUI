@@ -36,11 +36,11 @@ export class LoginComponent implements OnInit {
 
     });
     this.signupForm = new FormGroup({
-      name: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
-      last_name: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
+      name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(25)]),
+      last_name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(25)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      phone: new FormControl(null, [Validators.pattern('[6-9]\\d{9}')]),
+      phone: new FormControl(null, [Validators.required,Validators.pattern('[6-9]\\d{9}')]),
       confPassword: new FormControl(null, [Validators.required, Validators.email]),
      
     });
