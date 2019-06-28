@@ -33,7 +33,7 @@
         </form>
       </div>
       <div rightPane>
-        <form [formGroup]='signupForm' novalidate (ngSubmit)="openDialog()" id="signupForm">
+        <form [formGroup]='signupForm' novalidate (ngSubmit)="openDialog(signupForm.value)" id="signupForm">
           <mat-list>
             <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Signup</span></mat-list-item>
             <mat-divider></mat-divider>
@@ -50,7 +50,7 @@
             <mat-placeholder class="placeholder">Enter Last Name</mat-placeholder>
             <mat-error *ngIf="signupForm.get('last_name').hasError('required') && signupForm.get('last_name').touched">Valid name is required.</mat-error>
           </mat-form-field>
-          <br />
+          <br /><br />
           <mat-form-field>
             <input matInput formControlName="email" name="email" autocomplete="off" required>
             <mat-placeholder class="placeholder">Enter your email</mat-placeholder>
@@ -68,7 +68,7 @@
             </button>
           </mat-form-field>
 
-          <br />
+          <br /><br />
           <mat-form-field>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName='confPassword' name="confPassword" autocomplete="off" required>
             <mat-placeholder class="placeholder">Confirm password</mat-placeholder>

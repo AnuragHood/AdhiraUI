@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
   labelPosition = 'after';
   login: Object = {};
   user: Object = {};
+   
   gender = 'male';
-  animal: string;
-  name: string;
+  registerOption: string;
   
   ngOnInit() {
     
@@ -98,17 +98,27 @@ export class LoginComponent implements OnInit {
     (<HTMLFormElement>document.getElementById("signupForm")).reset();
   }
   
-  openDialog(): void {
+  openDialog(formdata): void {
     const dialogRef = this.dialog.open(DialogControlComponent, {
       width: '250px',
-      data: { name: this.name, animal: this.animal }
+      data: { registerOption:this.registerOption },
+
+    
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      this.registerOption = result;
+        console.log(this.registerOption); 
     });
+    this.user["email"] = formdata.email;
+    this.user["password"] = formdata.password;
+    this.user["lastName"] = formdata.last_name;
+    this.user["name"] = formdata.name;
+    this.user["phone"] = formdata.phone;
+    this.user["gender"] = formdata.gender;
+    localStorage.setItem("user",JSON.stringify(this.user))
   }
- 
+   
   
 }
