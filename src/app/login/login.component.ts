@@ -15,8 +15,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   
 })
 export class LoginComponent implements OnInit {
-  loginForm;
-  signupForm;
+  
+  
   isLeftVisible: boolean = true;
   response: any;
   hide = true;
@@ -26,6 +26,12 @@ export class LoginComponent implements OnInit {
   gender = 'male';
   animal: string;
   name: string;
+  loginForm: FormGroup;
+  signupForm:FormGroup;
+  password: FormControl;
+  confPassword: FormControl;
+  passmsg: boolean;
+  
   
   ngOnInit() {
     
@@ -41,19 +47,27 @@ export class LoginComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       phone: new FormControl(null, [Validators.required,Validators.pattern('[6-9]\\d{9}')]),
-      confPassword: new FormControl(null, [Validators.required, Validators.email]),
+      confPassword: new FormControl(null, [Validators.required]),
      
     });
+ 
+  }
+  checkPassSame() {
     
+    let pass = this.signupForm.value.password;
+    let passConf = this.signupForm.value.confPassword;
+    if (pass == passConf) {
+      
+      console.log("function invoked happy case" + this.signupForm.value.password)
+      //return this.passmsg;
+    } else {
+      this.signupForm.controls['confPassword'].setErrors({ 'passmsg': true });
+      console.log("function invoked" + this.signupForm.value.confPassword)
+     // return this.passmsg;
+    }
     
   }
-  //confirmPassword(formcontrol: FormControl) {
-  //  if (formcontrol.get("confPassword").value != null) {
-  //  return formcontrol.get("confPassword").value === formcontrol.get("password").value ? null : {
-  //    NotEqual: true
-  //  };
-  //}
-  //}
+
   changeButtonText() {
     
     this.isLeftVisible = !this.isLeftVisible

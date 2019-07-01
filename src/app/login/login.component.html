@@ -33,6 +33,7 @@
         </form>
       </div>
       <div rightPane>
+        
         <form [formGroup]='signupForm' novalidate (ngSubmit)="openDialog()" id="signupForm">
           <mat-list>
             <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Signup</span></mat-list-item>
@@ -70,11 +71,13 @@
 
           <br />
           <mat-form-field>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName='confPassword' name="confPassword" autocomplete="off" required>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName='confPassword' name="confPassword" autocomplete="off" (keyup)="checkPassSame()" required>
             <mat-placeholder class="placeholder">Confirm password</mat-placeholder>
-            <mat-error *ngIf="signupForm.get('confPassword').hasError('pattern') && signupForm.get('confPassword').touched ">
+           
+            <mat-error *ngIf="signupForm.get('confPassword').hasError('required','passmsg') && signupForm.get('confPassword').touched">
               Passwords don't match.
             </mat-error>
+             
           </mat-form-field>
           &nbsp;
           <mat-form-field>
