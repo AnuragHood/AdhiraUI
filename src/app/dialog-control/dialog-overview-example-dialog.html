@@ -15,5 +15,5 @@
   
 
 <div mat-dialog-actions  align="center">
-  <button mat-mini-fab color="basic" [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-mini-fab color="basic" mat-dialog-close (click)="save()" cdkFocusInitial>Ok</button>
 </div>
