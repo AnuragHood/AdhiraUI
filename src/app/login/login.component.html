@@ -26,7 +26,9 @@
             </button>
 
           </mat-form-field>
-          <br /><br /><br />
+          <br /><br />
+          <mat-checkbox color="primary">Remember me!</mat-checkbox><button type="button" mat-button color="primary" (click)="forgotPassword()">Forgot Password?</button>
+          <br /><br />
           <button mat-fab color="accent" type="submit" [disabled]="!loginForm.valid">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
 
@@ -53,7 +55,7 @@
           </mat-form-field>
           <br />
           <mat-form-field>
-            <input matInput formControlName="email" name="email" autocomplete="off" required>
+            <input matInput formControlName="email" name="email" autocomplete="disabled" required>
             <mat-placeholder class="placeholder">Enter your email</mat-placeholder>
             <mat-error *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').touched">Valid email required.</mat-error>
           </mat-form-field>&nbsp;
@@ -91,7 +93,7 @@
           <br /><br />
           <div>
             <label>You are: &nbsp;</label>
-            <mat-radio-group [(ngModel)]="gender" name="gender" [ngModelOptions]="{standalone: true}">
+            <mat-radio-group [(ngModel)]="gender" name="gender" [ngModelOptions]="{standalone: true}"  color="primary">
               <mat-radio-button value="male" checked>Male&nbsp;</mat-radio-button>
               <mat-radio-button value="female">Female&nbsp;</mat-radio-button>
               <mat-radio-button value="other">Other</mat-radio-button>

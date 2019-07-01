@@ -18,6 +18,8 @@ import { MatRadioModule  } from '@angular/material/';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogControlComponent } from './dialog-control/dialog-control.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 
@@ -30,11 +32,12 @@ import { DialogControlComponent } from './dialog-control/dialog-control.componen
     FooterComponent,
     SlidePanelComponent,
     DialogControlComponent,
+    ForgotPasswordComponent,
    
     
    
   ],
-  entryComponents: [DialogControlComponent],
+  entryComponents: [DialogControlComponent, ForgotPasswordComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -53,7 +56,8 @@ import { DialogControlComponent } from './dialog-control/dialog-control.componen
     MatRadioModule,
     FormsModule,
     FlexLayoutModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup, } from '@angular/forms';
 import { DialogControlComponent } from '../dialog-control/dialog-control.component';
+
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+
 import { RegisterService } from '../register.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+
 
 
 
@@ -72,10 +77,10 @@ export class LoginComponent implements OnInit {
     
     this.isLeftVisible = !this.isLeftVisible
     if (this.isLeftVisible) {
-      console.log(this.isLeftVisible)
+      this.resetForm();
       document.getElementById("signup").innerText = "Signup";
     } else {
-      console.log("else" + this.isLeftVisible)
+      this.resetForm();
       document.getElementById("signup").innerText = "Login";
     }
   }
@@ -121,6 +126,17 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.animal = result;
+    });
+  }
+  forgotPassword(): void {
+    const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+      width: '250px',
+     
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+     
     });
   }
  
