@@ -1,8 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup, } from '@angular/forms';
 import { DialogControlComponent } from '../dialog-control/dialog-control.component';
+
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+
 import { RegisterService } from '../register.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+
 
 
 
@@ -15,17 +20,23 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   
 })
 export class LoginComponent implements OnInit {
-  loginForm;
-  signupForm;
+  
+  
   isLeftVisible: boolean = true;
   response: any;
   hide = true;
   labelPosition = 'after';
   login: Object = {};
   user: Object = {};
-   
   gender = 'male';
-  registerOption: string;
+  animal: string;
+  name: string;
+  loginForm: FormGroup;
+  signupForm:FormGroup;
+  password: FormControl;
+  confPassword: FormControl;
+  passmsg: boolean;
+  
   
   ngOnInit() {
     
@@ -41,27 +52,35 @@ export class LoginComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       phone: new FormControl(null, [Validators.required,Validators.pattern('[6-9]\\d{9}')]),
-      confPassword: new FormControl(null, [Validators.required, Validators.email]),
+      confPassword: new FormControl(null, [Validators.required]),
      
     });
+ 
+  }
+  checkPassSame() {
     
+    let pass = this.signupForm.value.password;
+    let passConf = this.signupForm.value.confPassword;
+    if (pass == passConf) {
+      
+      console.log("function invoked happy case" + this.signupForm.value.password)
+      //return this.passmsg;
+    } else {
+      this.signupForm.controls['confPassword'].setErrors({ 'passmsg': true });
+      console.log("function invoked" + this.signupForm.value.confPassword)
+     // return this.passmsg;
+    }
     
   }
-  //confirmPassword(formcontrol: FormControl) {
-  //  if (formcontrol.get("confPassword").value != null) {
-  //  return formcontrol.get("confPassword").value === formcontrol.get("password").value ? null : {
-  //    NotEqual: true
-  //  };
-  //}
-  //}
+
   changeButtonText() {
     
     this.isLeftVisible = !this.isLeftVisible
     if (this.isLeftVisible) {
-      console.log(this.isLeftVisible)
+      this.resetForm();
       document.getElementById("signup").innerText = "Signup";
     } else {
-      console.log("else" + this.isLeftVisible)
+      this.resetForm();
       document.getElementById("signup").innerText = "Login";
     }
   }
@@ -98,19 +117,28 @@ export class LoginComponent implements OnInit {
     (<HTMLFormElement>document.getElementById("signupForm")).reset();
   }
   
-  openDialog(formdata): void {
+  openDialog(): void {
     const dialogRef = this.dialog.open(DialogControlComponent, {
       width: '250px',
-      data: { registerOption:this.registerOption },
-
-    
+      data: { name: this.name, animal: this.animal }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.registerOption = result;
-        console.log(this.registerOption); 
+      this.animal = result;
     });
+  }
+  forgotPassword(): void {
+    const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+      width: '250px',
+     
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+     
+    });
+
     this.user["email"] = formdata.email;
     this.user["password"] = formdata.password;
     this.user["lastName"] = formdata.last_name;
@@ -119,7 +147,8 @@ export class LoginComponent implements OnInit {
     this.user["gender"] =  this.gender;
     console.log( this.gender);
     localStorage.setItem("user_254521_details",JSON.stringify(this.user))
+
   }
-   
+ 
   
 }

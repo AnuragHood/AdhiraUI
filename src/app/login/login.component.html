@@ -26,14 +26,17 @@
             </button>
 
           </mat-form-field>
-          <br /><br /><br />
+          <br /><br />
+          <mat-checkbox color="primary">Remember me!</mat-checkbox><button type="button" mat-button color="primary" (click)="forgotPassword()">Forgot Password?</button>
+          <br /><br />
           <button mat-fab color="accent" type="submit" [disabled]="!loginForm.valid">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
 
         </form>
       </div>
       <div rightPane>
-        <form [formGroup]='signupForm' novalidate (ngSubmit)="openDialog(signupForm.value)" id="signupForm">
+        
+        <form [formGroup]='signupForm' novalidate (ngSubmit)="openDialog()" id="signupForm">
           <mat-list>
             <mat-list-item><img src="http://localhost:4200/assets/download.png" alt="Avatar" style="width:85px"><span class="header1">Signup</span></mat-list-item>
             <mat-divider></mat-divider>
@@ -50,9 +53,9 @@
             <mat-placeholder class="placeholder">Enter Last Name</mat-placeholder>
             <mat-error *ngIf="signupForm.get('last_name').hasError('required') && signupForm.get('last_name').touched">Valid name is required.</mat-error>
           </mat-form-field>
-          <br /><br />
+          <br />
           <mat-form-field>
-            <input matInput formControlName="email" name="email" autocomplete="off" required>
+            <input matInput formControlName="email" name="email" autocomplete="disabled" required>
             <mat-placeholder class="placeholder">Enter your email</mat-placeholder>
             <mat-error *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').touched">Valid email required.</mat-error>
           </mat-form-field>&nbsp;
@@ -68,13 +71,15 @@
             </button>
           </mat-form-field>
 
-          <br /><br />
+          <br />
           <mat-form-field>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName='confPassword' name="confPassword" autocomplete="off" required>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName='confPassword' name="confPassword" autocomplete="off" (keyup)="checkPassSame()" required>
             <mat-placeholder class="placeholder">Confirm password</mat-placeholder>
-            <mat-error *ngIf="signupForm.get('confPassword').hasError('pattern') && signupForm.get('confPassword').touched ">
+           
+            <mat-error *ngIf="signupForm.get('confPassword').hasError('required','passmsg') && signupForm.get('confPassword').touched">
               Passwords don't match.
             </mat-error>
+             
           </mat-form-field>
           &nbsp;
           <mat-form-field>
@@ -88,7 +93,7 @@
           <br /><br />
           <div>
             <label>You are: &nbsp;</label>
-            <mat-radio-group [(ngModel)]="gender" name="gender" [ngModelOptions]="{standalone: true}">
+            <mat-radio-group [(ngModel)]="gender" name="gender" [ngModelOptions]="{standalone: true}"  color="primary">
               <mat-radio-button value="male" checked>Male&nbsp;</mat-radio-button>
               <mat-radio-button value="female">Female&nbsp;</mat-radio-button>
               <mat-radio-button value="other">Other</mat-radio-button>

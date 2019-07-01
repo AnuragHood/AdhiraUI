@@ -19,8 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogControlComponent } from './dialog-control/dialog-control.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
-
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 
@@ -31,12 +31,18 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
     FooterComponent,
     SlidePanelComponent,
     DialogControlComponent,
+
     OtpVerificationComponent,
+
+    ForgotPasswordComponent,
+
    
     
    
   ],
-  entryComponents: [DialogControlComponent,OtpVerificationComponent],
+
+  entryComponents: [DialogControlComponent, ForgotPasswordComponent,OtpVerificationComponent],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -55,7 +61,8 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
     MatRadioModule,
     FormsModule,
     FlexLayoutModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
