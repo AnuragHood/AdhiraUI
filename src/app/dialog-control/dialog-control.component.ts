@@ -51,21 +51,23 @@ export class DialogControlComponent{
  alertResponse(response) {
    
      if(this.registerOption == "mobile"){
-   const dialogRef = this.dialog.open(OtpVerificationComponent, {
-      width: '250px',
-      //data: { res:this.name },
-
-    
-    });
+  
     if(this.response == null || this.response =="0" ){
     alert("Mobile/Email already exist.")
     }
     else{
     alert("Please check your mobile for otp.");
+     const dialogRef = this.dialog.open(OtpVerificationComponent, {
+      width: '250px',
+      //data: { res:this.name },
+     
+    
+    });
+     dialogRef.componentInstance.response = this.response;
     }
   
    
-  dialogRef.componentInstance.response = this.response;
+  
    }
    else{
    if(this.response == "0"){

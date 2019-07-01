@@ -23,6 +23,12 @@ export class RegisterService {
     params = params.append('inputValue', inputValue);
     return this.http.get("http://localhost:8080/adhira/confirm-otp",{params: params, responseType: 'text'})
   }
+  inquire(inquire: any) {
+    let params = new HttpParams();
+    params = params.append('inquire', inquire);
+   
+    return this.http.get("http://localhost:8080/adhira/inquire",{params: params, responseType: 'text'})
+  }
   
   
 }

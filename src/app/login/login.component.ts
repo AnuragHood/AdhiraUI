@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
   password: FormControl;
   confPassword: FormControl;
   passmsg: boolean;
+
   
   
   ngOnInit() {
@@ -117,7 +118,7 @@ export class LoginComponent implements OnInit {
     (<HTMLFormElement>document.getElementById("signupForm")).reset();
   }
   
-  openDialog(): void {
+  openDialog(formdata): void {
     const dialogRef = this.dialog.open(DialogControlComponent, {
       width: '250px',
       data: { name: this.name, animal: this.animal }
@@ -127,6 +128,14 @@ export class LoginComponent implements OnInit {
       console.log('The dialog was closed');
       this.animal = result;
     });
+     this.user["email"] = formdata.email;
+    this.user["password"] = formdata.password;
+    this.user["lastName"] = formdata.last_name;
+    this.user["name"] = formdata.name;
+    this.user["phone"] = formdata.phone;
+    this.user["gender"] =  this.gender;
+    console.log( this.gender);
+    localStorage.setItem("user_254521_details",JSON.stringify(this.user))
   }
   forgotPassword(): void {
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
@@ -139,14 +148,7 @@ export class LoginComponent implements OnInit {
      
     });
 
-    this.user["email"] = formdata.email;
-    this.user["password"] = formdata.password;
-    this.user["lastName"] = formdata.last_name;
-    this.user["name"] = formdata.name;
-    this.user["phone"] = formdata.phone;
-    this.user["gender"] =  this.gender;
-    console.log( this.gender);
-    localStorage.setItem("user_254521_details",JSON.stringify(this.user))
+   
 
   }
  
