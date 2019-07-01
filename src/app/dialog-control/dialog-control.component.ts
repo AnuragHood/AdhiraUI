@@ -1,14 +1,12 @@
 import { Component,Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegisterService } from '../register.service';
+import { OtpVerificationComponent } from '../otp-verification/otp-verification.component';
 
 
 
 
-export class DialogData {
-  registerOption: string;
- 
-}
+
 @Component({
   
   selector: 'dialog-overview-example-dialog',
@@ -20,12 +18,14 @@ export class DialogControlComponent{
    user: Object = {};
    userFinal: Object = {};
    response: any;
+   otp: string;
+   
   
   
 
   constructor(
     public dialogRef: MatDialogRef<DialogControlComponent >,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,private register: RegisterService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,private register: RegisterService,public dialog: MatDialog) { }
 
   onNoClick(e): void {
     this.dialogRef.close();
@@ -33,8 +33,7 @@ export class DialogControlComponent{
   }
 
   public save() {
-   this.user = JSON.parse(localStorage.getItem("user"))
-  // this.user =JSON.stringify(this.user)
+    this.user = JSON.parse(localStorage.getItem("user_254521_details"))    
     this.userFinal["registrationMode"] = this.registerOption;
     this.userFinal["email"] =  this.user.email;
     this.userFinal["password"] =  this.user.password;
@@ -42,10 +41,41 @@ export class DialogControlComponent{
     this.userFinal["name"] =  this.user.name;
     this.userFinal["phone"] =  this.user.phone;
     this.userFinal["gender"] =  this.user.gender;
-   console.log(typeof this.registerOption+""+JSON.stringify(this.userFinal))
-   this.register.addUser(this.user).subscribe((data) => this.displaydata(data));
+   
+    
+    this.register.addUser(this.userFinal).subscribe((data) => this.displaydata(data));
+   
  
  }
  displaydata(data) { this.response = data; this.alertResponse(this.response); }
-}
+ alertResponse(response) {
+   
+     if(this.registerOption == "mobile"){
+   const dialogRef = this.dialog.open(OtpVerificationComponent, {
+      width: '250px',
+      //data: { res:this.name },
 
+    
+    });
+    if(this.response == null || this.response =="0" ){
+    alert("Mobile/Email already exist.")
+    }
+    else{
+    alert("Please check your mobile for otp.");
+    }
+  
+   
+  dialogRef.componentInstance.response = this.response;
+   }
+   else{
+   if(this.response == "0"){
+   alert("Email already exist.")
+   }
+   else{
+   alert("Please check your mail to complete your registration")
+   }
+   
+   }
+  }
+  
+}

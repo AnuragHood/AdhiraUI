@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 
 
 @Injectable({
@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterService {
   httpdata;
+  object: Object = {};
   constructor(private http: HttpClient) { }
   addUser(user: any) {
     console.log("inside service"+user.email)
@@ -16,5 +17,12 @@ export class RegisterService {
     console.log("inside service" + login.email)
     return this.http.post("http://localhost:8080/adhira/login", login, { responseType: 'text' })
   }
- 
+  verify(inputValue: any,otp:any) {
+    let params = new HttpParams();
+    params = params.append('otp', otp);
+    params = params.append('inputValue', inputValue);
+    return this.http.get("http://localhost:8080/adhira/confirm-otp",{params: params, responseType: 'text'})
+  }
+  
+  
 }

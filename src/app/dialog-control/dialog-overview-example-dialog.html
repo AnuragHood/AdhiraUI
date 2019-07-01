@@ -1,7 +1,7 @@
 
 <div mat-dialog-content align="center">
  
- <div class="content-dialogue">
+ <div>
     <label>Use for registration: &nbsp;</label><br /><br />
     <mat-radio-group [(ngModel)]="registerOption" name="registerOption" [ngModelOptions]="{standalone: true}">
 
@@ -9,11 +9,10 @@
       <mat-radio-button value="email">Email</mat-radio-button>
 
     </mat-radio-group>
-  </div>
- 
-</div>
+ </div>
   
-
-<div mat-dialog-actions  align="center">
+<div mat-dialog-actions  align="center" >
   <button mat-mini-fab color="basic" mat-dialog-close (click)="save()" cdkFocusInitial>Ok</button>
 </div>
+
+

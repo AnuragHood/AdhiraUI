@@ -18,6 +18,7 @@ import { MatRadioModule  } from '@angular/material/';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogControlComponent } from './dialog-control/dialog-control.component';
+import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 
 
 
@@ -30,11 +31,12 @@ import { DialogControlComponent } from './dialog-control/dialog-control.componen
     FooterComponent,
     SlidePanelComponent,
     DialogControlComponent,
+    OtpVerificationComponent,
    
     
    
   ],
-  entryComponents: [DialogControlComponent],
+  entryComponents: [DialogControlComponent,OtpVerificationComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

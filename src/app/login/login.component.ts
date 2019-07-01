@@ -116,8 +116,9 @@ export class LoginComponent implements OnInit {
     this.user["lastName"] = formdata.last_name;
     this.user["name"] = formdata.name;
     this.user["phone"] = formdata.phone;
-    this.user["gender"] = formdata.gender;
-    localStorage.setItem("user",JSON.stringify(this.user))
+    this.user["gender"] =  this.gender;
+    console.log( this.gender);
+    localStorage.setItem("user_254521_details",JSON.stringify(this.user))
   }
    
   
