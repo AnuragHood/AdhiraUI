@@ -26,7 +26,6 @@ export class RegisterService {
   inquire(inquire: any) {
     let params = new HttpParams();
     params = params.append('inquire', inquire);
-   
     return this.http.get("http://localhost:8080/adhira/inquire",{params: params, responseType: 'text'})
   }
   

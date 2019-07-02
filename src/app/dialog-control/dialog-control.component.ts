@@ -19,6 +19,8 @@ export class DialogControlComponent{
    userFinal: Object = {};
    response: any;
    otp: string;
+   id:any
+  
    
   
   
@@ -63,7 +65,8 @@ export class DialogControlComponent{
      
     
     });
-     dialogRef.componentInstance.response = this.response;
+    console.log( "response:"+this.response)
+     dialogRef.componentInstance.id = this.response;
     }
   
    
@@ -71,7 +74,7 @@ export class DialogControlComponent{
    }
    else{
    if(this.response == "0"){
-   alert("Email already exist.")
+   alert("Mobile/Email already exist.")
    }
    else{
    alert("Please check your mail to complete your registration")

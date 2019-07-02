@@ -16,6 +16,7 @@ import { OtpVerificationComponent } from '../otp-verification/otp-verification.c
 export class ForgotPasswordComponent implements OnInit {
 forgotPassForm: FormGroup;
 responseData:any;
+id:any;
   
 
   ngOnInit() {
@@ -33,20 +34,26 @@ responseData:any;
   }
   inquire(formdata){
     console.log("inquire"+formdata.inquire);
-    
     this.register.inquire(formdata.inquire).subscribe((data) => this.displaydata(data));
     this.dialogRef.close();
     }
   
 displaydata(data) { this.responseData = data; this.alertResponse(this.responseData); }
   alertResponse(responseData) {
-    alert(responseData);
-    
-     const dialogRef = this.dialog.open(OtpVerificationComponent, {
+  if(responseData != ""){
+  alert("We found you..Check your mobile for otp");
+  const dialogRef = this.dialog.open(OtpVerificationComponent, {
       width: '250px',
       //data: { res:this.name },
      
     
     });
+    dialogRef.componentInstance.id = this.responseData;
+  }
+  else{
+    alert("We found you..Check your email to verify");
+    }
+    
+     
   }
 }

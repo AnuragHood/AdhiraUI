@@ -5,7 +5,7 @@
   
    <mat-form-field>
   
-            <input matInput formControlName="otp" name="otp" autocomplete="off" required id= {{response}} class="otpClass">
+            <input matInput formControlName="otp" name="otp" autocomplete="off" required id= {{id}} class="otpClass">
             
             <mat-placeholder class="placeholder">Enter otp</mat-placeholder>
             <mat-error *ngIf="otpForm.get('otp').hasError('required') && otpForm.get('otp').touched">Valid otp is required.</mat-error>
