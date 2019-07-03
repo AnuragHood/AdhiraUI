@@ -44,7 +44,7 @@ displaydata(data) { this.responseData = data; this.alertResponse(this.responseDa
   alert("We found you..Check your mobile for otp");
   const dialogRef = this.dialog.open(OtpVerificationComponent, {
       width: '250px',
-      //data: { res:this.name },
+      data: { res:this.name },
      
     
     });

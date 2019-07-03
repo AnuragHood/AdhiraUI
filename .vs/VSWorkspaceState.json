@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\login-card"
+    "\\src\\app\\dialog-control",
+    "\\src\\app\\forgot-password",
+    "\\src\\app\\login",
+    "\\src\\app\\otp-verification"
   ],
-  "SelectedNode": "\\src\\app\\login-card\\login-card.component.html",
+  "SelectedNode": "\\src\\app\\otp-verification\\otp-verification.component.html",
   "PreviewInSolutionExplorer": false
 }
