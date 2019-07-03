@@ -21,6 +21,8 @@ import { DialogControlComponent } from './dialog-control/dialog-control.componen
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 
@@ -64,7 +66,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     MatDialogModule,
     MatCheckboxModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

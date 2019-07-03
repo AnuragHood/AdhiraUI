@@ -12,7 +12,8 @@ import { RegisterService } from '../register.service';
 })
 export class OtpVerificationComponent implements OnInit {
 otpForm;
-responseData;
+  responseData;
+  id: any;
   constructor(
     public dialogRef: MatDialogRef<OtpVerificationComponent >,
     @Inject(MAT_DIALOG_DATA) public data: any,private register: RegisterService) { }

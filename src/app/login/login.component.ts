@@ -6,6 +6,8 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 
 import { RegisterService } from '../register.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 
@@ -40,11 +42,12 @@ export class LoginComponent implements OnInit {
   
   
   ngOnInit() {
-    
+    console.log(this.cookieService.get('rememberMeId'));
+    console.log(this.cookieService.get('rememberMePass'));
     this.loginForm = new FormGroup({
 
-      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(this.cookieService.get('rememberMePass'), [Validators.required, Validators.minLength(8)]),
+      email: new FormControl(this.cookieService.get('rememberMeId'), [Validators.required, Validators.email]),
 
     });
     this.signupForm = new FormGroup({
@@ -56,7 +59,8 @@ export class LoginComponent implements OnInit {
       confPassword: new FormControl(null, [Validators.required]),
      
     });
- 
+    
+    
   }
   checkPassSame() {
     
@@ -91,22 +95,19 @@ export class LoginComponent implements OnInit {
   onClickSubmitLogin(formdata) {
     this.login["email"] = formdata.email;
     this.login["password"] = formdata.password;
+    if ((<any>document.getElementById('isRememberMeSelected-input')).checked) {
+      this.cookieService.delete('rememberMeId');
+      this.cookieService.delete('rememberMePass');
+      this.cookieService.set('rememberMeId', formdata.email);
+      this.cookieService.set('rememberMePass', formdata.password);
+      console.log(this.cookieService.get('rememberMeId'));
+      console.log(this.cookieService.get('rememberMePass'));
+    }
+   
     this.register.login(this.login).subscribe((data) => this.displaydata(data));
   }
-  constructor(private register: RegisterService, public dialog: MatDialog) { }
-  
-  onClickSubmitSignup(formdata) {
-    console.log(formdata.gender)
-    this.user["email"] = formdata.email;
-    this.user["password"] = formdata.password;
-    this.user["lastName"] = formdata.last_name;
-    this.user["name"] = formdata.name;
-    this.user["phone"] = formdata.phone;
-    this.user["gender"] = formdata.gender;
-    this.register.addUser(this.user).subscribe((data) => this.displaydata(data));
-    
-
-  }
+  constructor(private register: RegisterService, public dialog: MatDialog, private cookieService: CookieService) { }
+ 
   displaydata(data) { this.response = data; this.alertResponse(this.response); }
   alertResponse(response) {
     alert(response);
@@ -128,7 +129,7 @@ export class LoginComponent implements OnInit {
       console.log('The dialog was closed');
       this.animal = result;
     });
-     this.user["email"] = formdata.email;
+    this.user["email"] = formdata.email;
     this.user["password"] = formdata.password;
     this.user["lastName"] = formdata.last_name;
     this.user["name"] = formdata.name;

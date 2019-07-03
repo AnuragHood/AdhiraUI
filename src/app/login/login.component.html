@@ -27,7 +27,7 @@
 
           </mat-form-field>
           <br /><br />
-          <mat-checkbox color="primary">Remember me!</mat-checkbox> &nbsp;&nbsp;<button type="button" mat-button color="primary" (click)="forgotPassword()">Forgot Password?</button>
+          <mat-checkbox color="primary" id="isRememberMeSelected">Remember me!</mat-checkbox> &nbsp;&nbsp;<button type="button" mat-button color="primary" (click)="forgotPassword()">Forgot Password?</button>
           <br /><br />
           <button mat-fab color="accent" type="submit" [disabled]="!loginForm.valid">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button mat-fab color="warn" type="button" (click)="resetForm($event)">Reset</button>
