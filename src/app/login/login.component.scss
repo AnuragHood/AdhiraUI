@@ -1,4 +1,3 @@
-
 input.example-right-align::-webkit-outer-spin-button,
 input.example-right-align::-webkit-inner-spin-button {
   display: none;
@@ -19,8 +18,8 @@ my-slide-panel {
   margin-right: 20px;
   min-height: 68%;
 
-
-  div, img {
+  div,
+  img {
     font: 17px cursive;
     height: 100%;
     align-items: center;
@@ -28,30 +27,30 @@ my-slide-panel {
     display: flex;
   }
 }
- 
-  [leftPane] {
-    background-color: white;
-  }
 
-  [rightPane] {
-    background-color: white;
-  }
+[leftPane] {
+  background-color: white;
+}
 
-  img {
-    border-radius: 50%;
-  }
+[rightPane] {
+  background-color: white;
+}
 
-  input {
-    font: 15px sans-serif !important;
-    opacity: 1;
-    text-shadow: unset !important;
-    font-weight: 300 !important;
-    color: #8B4513 !important;
-  }
+img {
+  border-radius: 50%;
+}
 
-  .mat-radio-button {
-    margin: 0 12px;
-  }
+input {
+  font: 15px sans-serif !important;
+  opacity: 1;
+  text-shadow: unset !important;
+  font-weight: 300 !important;
+  color: #8b4513 !important;
+}
+
+.mat-radio-button {
+  margin: 0 12px;
+}
 .matItems {
   margin-bottom: 50px;
   align-items: center;

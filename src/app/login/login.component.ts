@@ -1,86 +1,90 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormControl, Validators, FormGroup, } from '@angular/forms';
-import { DialogControlComponent } from '../dialog-control/dialog-control.component';
+import { Component, OnInit, Inject } from "@angular/core";
+import { FormControl, Validators, FormGroup } from "@angular/forms";
+import { DialogControlComponent } from "../dialog-control/dialog-control.component";
 
-import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from "../forgot-password/forgot-password.component";
 
-import { RegisterService } from '../register.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CookieService } from 'ngx-cookie-service';
-
-
-
-
-
-
-
+import { RegisterService } from "../register.service";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from "@angular/material/dialog";
+import { CookieService } from "ngx-cookie-service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-  
-  
-  isLeftVisible: boolean = true;
+  isLeftVisible = true;
   response: any;
   hide = true;
-  labelPosition = 'after';
+  labelPosition = "after";
   login: Object = {};
   user: Object = {};
-  gender = 'male';
+  gender = "male";
   animal: string;
   name: string;
   loginForm: FormGroup;
-  signupForm:FormGroup;
+  signupForm: FormGroup;
   password: FormControl;
   confPassword: FormControl;
   passmsg: boolean;
 
-  
-  
   ngOnInit() {
-    console.log(this.cookieService.get('rememberMeId'));
-    console.log(this.cookieService.get('rememberMePass'));
+    console.log(this.cookieService.get("rememberMeId"));
+    console.log(this.cookieService.get("rememberMePass"));
     this.loginForm = new FormGroup({
-
-      password: new FormControl(this.cookieService.get('rememberMePass'), [Validators.required, Validators.minLength(8)]),
-      email: new FormControl(this.cookieService.get('rememberMeId'), [Validators.required, Validators.email]),
-
+      password: new FormControl(this.cookieService.get("rememberMePass"), [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
+      email: new FormControl(this.cookieService.get("rememberMeId"), [
+        Validators.required,
+        Validators.email
+      ])
     });
     this.signupForm = new FormGroup({
-      name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(25)]),
-      last_name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(25)]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(25)
+      ]),
+      last_name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(25)
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      phone: new FormControl(null, [Validators.required,Validators.pattern('[6-9]\\d{9}')]),
-      confPassword: new FormControl(null, [Validators.required]),
-     
+      phone: new FormControl(null, [
+        Validators.required,
+        Validators.pattern("[6-9]\\d{9}")
+      ]),
+      confPassword: new FormControl(null, [Validators.required])
     });
-    
-    
   }
   checkPassSame() {
-    
-    let pass = this.signupForm.value.password;
-    let passConf = this.signupForm.value.confPassword;
+    const pass = this.signupForm.value.password;
+    const passConf = this.signupForm.value.confPassword;
     if (pass == passConf) {
-      
-      console.log("function invoked happy case" + this.signupForm.value.password)
-      //return this.passmsg;
+      console.log(
+        "function invoked happy case" + this.signupForm.value.password
+      );
     } else {
-      this.signupForm.controls['confPassword'].setErrors({ 'passmsg': true });
-      console.log("function invoked" + this.signupForm.value.confPassword)
-     // return this.passmsg;
+      this.signupForm.controls.confPassword.setErrors({ passmsg: true });
+
+      console.log("function invoked" + this.signupForm.value.confPassword);
     }
-    
   }
 
   changeButtonText() {
-    
-    this.isLeftVisible = !this.isLeftVisible
+    this.isLeftVisible = !this.isLeftVisible;
     if (this.isLeftVisible) {
       this.resetForm();
       document.getElementById("signup").innerText = "Signup";
@@ -90,43 +94,50 @@ export class LoginComponent implements OnInit {
     }
   }
 
- 
-  
   onClickSubmitLogin(formdata) {
+    this.cookieService.delete("rememberMeId");
+    this.cookieService.delete("rememberMePass");
     this.login["email"] = formdata.email;
     this.login["password"] = formdata.password;
-    if ((<any>document.getElementById('isRememberMeSelected-input')).checked) {
-      this.cookieService.delete('rememberMeId');
-      this.cookieService.delete('rememberMePass');
-      this.cookieService.set('rememberMeId', formdata.email);
-      this.cookieService.set('rememberMePass', formdata.password);
-      console.log(this.cookieService.get('rememberMeId'));
-      console.log(this.cookieService.get('rememberMePass'));
+    if (
+      (document.getElementById("isRememberMeSelected-input") as any).checked
+    ) {
+      this.cookieService.set("rememberMeId", formdata.email);
+      this.cookieService.set("rememberMePass", formdata.password);
+      console.log(this.cookieService.get("rememberMeId"));
+      console.log(this.cookieService.get("rememberMePass"));
     }
-   
-    this.register.login(this.login).subscribe((data) => this.displaydata(data));
+
+    this.register.login(this.login).subscribe(data => this.displaydata(data));
   }
-  constructor(private register: RegisterService, public dialog: MatDialog, private cookieService: CookieService) { }
- 
-  displaydata(data) { this.response = data; this.alertResponse(this.response); }
+  constructor(
+    private register: RegisterService,
+    public dialog: MatDialog,
+    private cookieService: CookieService
+  ) { }
+
+  displaydata(data) {
+    this.response = data;
+    this.alertResponse(this.response);
+  }
   alertResponse(response) {
     alert(response);
     this.resetForm();
     this.changeButtonText();
   }
   resetForm() {
-    (<HTMLFormElement>document.getElementById("Login")).reset();
-    (<HTMLFormElement>document.getElementById("signupForm")).reset();
+    (document.getElementById("Login") as HTMLFormElement).reset();
+    (document.getElementById("signupForm") as HTMLFormElement).reset();
   }
-  
+
   openDialog(formdata): void {
     const dialogRef = this.dialog.open(DialogControlComponent, {
-      width: '250px',
+      width: "250px",
       data: { name: this.name, animal: this.animal }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log("The dialog was closed");
       this.animal = result;
     });
     this.user["email"] = formdata.email;
@@ -134,24 +145,17 @@ export class LoginComponent implements OnInit {
     this.user["lastName"] = formdata.last_name;
     this.user["name"] = formdata.name;
     this.user["phone"] = formdata.phone;
-    this.user["gender"] =  this.gender;
-    console.log( this.gender);
-    localStorage.setItem("user_254521_details",JSON.stringify(this.user))
+    this.user["gender"] = this.gender;
+    console.log(this.gender);
+    localStorage.setItem("user_254521_details", JSON.stringify(this.user));
   }
   forgotPassword(): void {
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
-      width: '250px',
-     
+      width: "250px"
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-     
+      console.log("The dialog was closed");
     });
-
-   
-
   }
- 
-  
 }

@@ -1,18 +1,17 @@
-
 <div mat-dialog-content align="center">
- 
-   <form [formGroup]='otpForm' novalidate (ngSubmit)="verify(otpForm.value)" >
-  
-   <mat-form-field>
-  
-            <input matInput formControlName="otp" name="otp" autocomplete="off" required id= {{id}} class="otpClass">
-            
-            <mat-placeholder class="placeholder">Enter otp</mat-placeholder>
-            <mat-error *ngIf="otpForm.get('otp').hasError('required') && otpForm.get('otp').touched">Valid otp is required.</mat-error>
-  </mat-form-field>
- 
-<div mat-dialog-actions  align="center" >
-  <button mat-mini-fab color="basic" type = "submit"  cdkFocusInitial [disabled]="!otpForm.valid">Ok</button>
-</div>
-  </form>
 
+  <form [formGroup]='otpForm' novalidate (ngSubmit)="verify(otpForm.value)">
+
+    <mat-form-field>
+
+      <input matInput formControlName="otp" name="otp" autocomplete="off" required id={{id}} class="otpClass">
+
+      <mat-placeholder class="placeholder">Enter otp</mat-placeholder>
+      <mat-error *ngIf="otpForm.get('otp').hasError('required') && otpForm.get('otp').touched">Valid otp is required.
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions align="center">
+      <button mat-mini-fab color="basic" type="submit" cdkFocusInitial [disabled]="!otpForm.valid">Ok</button>
+    </div>
+  </form>

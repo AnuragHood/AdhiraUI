@@ -8,6 +8,6 @@
     "\\src\\app\\login",
     "\\src\\app\\otp-verification"
   ],
-  "SelectedNode": "\\src\\app\\otp-verification\\otp-verification.component.html",
+  "SelectedNode": "\\src\\app\\login\\login.component.ts",
   "PreviewInSolutionExplorer": false
 }

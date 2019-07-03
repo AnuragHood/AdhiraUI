@@ -44,3 +44,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+.vs/VSWorkspaceState.json
+package.json
+package-lock.json
+.vs/slnx.sqlite
+.vs/AdhiraUI/v16/.suo
