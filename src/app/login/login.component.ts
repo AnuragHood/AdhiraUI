@@ -158,4 +158,5 @@ export class LoginComponent implements OnInit {
       console.log("The dialog was closed");
     });
   }
+
 }

@@ -1,17 +1,17 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject } from '@angular/core';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA
-} from "@angular/material/dialog";
-import { FormControl, Validators, FormGroup } from "@angular/forms";
-import { RegisterService } from "../register.service";
-import { OtpVerificationComponent } from "../otp-verification/otp-verification.component";
+} from '@angular/material/dialog';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { RegisterService } from '../register.service';
+import { OtpVerificationComponent } from '../otp-verification/otp-verification.component';
 
 @Component({
-  selector: "app-forgot-password",
-  templateUrl: "./forgot-password.component.html",
-  styleUrls: ["./forgot-password.component.scss"]
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
   forgotPassForm: FormGroup;
@@ -34,7 +34,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.dialogRef.close();
   }
   inquire(formdata) {
-    console.log("inquire" + formdata.inquire);
+    console.log('inquire' + formdata.inquire);
     this.register
       .inquire(formdata.inquire)
       .subscribe(data => this.displaydata(data));
@@ -46,14 +46,14 @@ export class ForgotPasswordComponent implements OnInit {
     this.alertResponse(this.responseData);
   }
   alertResponse(responseData) {
-    if (responseData != "") {
-      alert("We found you..Check your mobile for otp");
+    if (responseData != '') {
+      alert('We found you..Check your mobile for otp');
       const dialogRef = this.dialog.open(OtpVerificationComponent, {
-        width: "250px"
+        width: '250px'
       });
       dialogRef.componentInstance.id = this.responseData;
     } else {
-      alert("We found you..Check your email to verify");
+      alert('We found you..Check your email to verify');
     }
   }
 }
