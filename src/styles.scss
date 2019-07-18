@@ -22,7 +22,7 @@ body {
   background-size: 100% 100vh !important;
   background: $color !important;
   text-shadow: 0.09em 0.09em 0.1em black !important;
-  
+
 }
 .content {
   min-height: calc(100vh - 70px);
@@ -65,4 +65,7 @@ button {
   font-size: 14px;
   margin-top: 16px;
 }
-
+.mat-snack-bar-container{
+  position:relative!important;
+  top:-545px !important;
+}

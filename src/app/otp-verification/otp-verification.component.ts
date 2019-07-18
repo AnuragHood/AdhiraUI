@@ -1,16 +1,16 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA
-} from "@angular/material/dialog";
-import { FormControl, Validators, FormGroup } from "@angular/forms";
-import { RegisterService } from "../register.service";
+} from '@angular/material/dialog';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { RegisterService } from '../register.service';
 
 @Component({
-  selector: "app-otp-verification",
-  templateUrl: "./otp-verification.component.html",
-  styleUrls: ["./otp-verification.component.scss"]
+  selector: 'app-otp-verification',
+  templateUrl: './otp-verification.component.html',
+  styleUrls: ['./otp-verification.component.scss']
 })
 export class OtpVerificationComponent implements OnInit {
   otpForm;
@@ -20,7 +20,7 @@ export class OtpVerificationComponent implements OnInit {
     public dialogRef: MatDialogRef<OtpVerificationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private register: RegisterService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.otpForm = new FormGroup({
@@ -35,8 +35,8 @@ export class OtpVerificationComponent implements OnInit {
     this.dialogRef.close();
   }
   verify(formdata) {
-    console.log(inputValue + "otp" + formdata.otp);
-    var inputValue = (<any>document.getElementsByClassName("otpClass"))[0].id;
+
+    const inputValue = (document.getElementsByClassName('otpClass') as any)[0].id;
     this.register
       .verify(inputValue, formdata.otp)
       .subscribe(data => this.displaydata(data));

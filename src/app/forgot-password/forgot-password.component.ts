@@ -1,22 +1,24 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject } from '@angular/core';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA
-} from "@angular/material/dialog";
-import { FormControl, Validators, FormGroup } from "@angular/forms";
-import { RegisterService } from "../register.service";
-import { OtpVerificationComponent } from "../otp-verification/otp-verification.component";
+} from '@angular/material/dialog';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { RegisterService } from '../register.service';
+import { OtpVerificationComponent } from '../otp-verification/otp-verification.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: "app-forgot-password",
-  templateUrl: "./forgot-password.component.html",
-  styleUrls: ["./forgot-password.component.scss"]
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
   forgotPassForm: FormGroup;
   responseData: any;
   id: any;
+  errors: any;
 
   ngOnInit() {
     this.forgotPassForm = new FormGroup({
@@ -27,18 +29,23 @@ export class ForgotPasswordComponent implements OnInit {
     public dialogRef: MatDialogRef<ForgotPasswordComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private register: RegisterService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
   inquire(formdata) {
-    console.log("inquire" + formdata.inquire);
-    this.register
-      .inquire(formdata.inquire)
-      .subscribe(data => this.displaydata(data));
-    this.dialogRef.close();
+    console.log('inquire' + formdata.inquire);
+    this.register.inquire(formdata.inquire).subscribe(
+      data => {
+        this.displaydata(data);
+      },
+      error => {
+        this.errors = error;
+      }
+    );
   }
 
   displaydata(data) {
@@ -46,14 +53,14 @@ export class ForgotPasswordComponent implements OnInit {
     this.alertResponse(this.responseData);
   }
   alertResponse(responseData) {
-    if (responseData != "") {
-      alert("We found you..Check your mobile for otp");
-      const dialogRef = this.dialog.open(OtpVerificationComponent, {
-        width: "250px"
-      });
-      dialogRef.componentInstance.id = this.responseData;
-    } else {
-      alert("We found you..Check your email to verify");
+    if (responseData === null) {
+      this.snackBar.open(
+        'Account not found!! Please try searching for your email, phone number or username again.',
+        'close',
+        {
+          duration: 300000
+        }
+      );
     }
   }
 }
