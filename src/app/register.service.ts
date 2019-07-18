@@ -10,7 +10,7 @@ export class RegisterService {
   object: Object = {};
   constructor(private http: HttpClient) { }
   addUser(user: any) {
-    console.log('inside service' + user.email);
+
     return this.http.post('http://localhost:8080/adhira/registration', user, { responseType: 'text' });
   }
   login(login: any) {
